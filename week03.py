@@ -1,6 +1,6 @@
-groups = ['HOT', 'Seventenn', 'Black Pink', 'NJZ']
-#rating = [1,2,4,3,100]
-rating = [1,2,4,3]
+cities = ['Incheon', 'Seoul', 'Incheon', 'Incheon', 'Gwangju']
+cities = set(cities)
+cities.add('Incheon')
+cities.add('Suwon')
 
-group_rating = list(zip(groups,rating))
-print(group_rating)
+print(cities)
