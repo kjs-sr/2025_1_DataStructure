@@ -17,6 +17,16 @@ class LinkedList:
             current = current.link # move current
         current.link = Node(data)
 
+    #def is_find(self, target):
+    def search(self, target):
+        current = self.head
+        while current.link:
+            if target == current.data:
+                return f"{target}을(를) 찾았습니다!"
+            else:
+                current = current.link
+        return f"{target}은(는) 링크드 리스트 안에 존재하지 않습니다."
+
     def __str__(self):
         #return "Linked List!"
         current = self.head
@@ -29,6 +39,10 @@ class LinkedList:
         return result + "END"
 ll = LinkedList()
 ll.append(8)
-ll.append(18)
+ll.append(10)
 ll.append(-9)
 print(ll)
+# print(ll.is_find(99))
+# print(ll.is_find(10))
+print(ll.search(99))
+print(ll.search(10))
