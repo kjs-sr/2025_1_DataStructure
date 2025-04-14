@@ -25,6 +25,7 @@ class Queue:
         self.size -= 1
         temp = self.front
         self.front = self.front.link
+        temp.link = None
         if self.front is None:
             self.rear = None
         return temp.data
