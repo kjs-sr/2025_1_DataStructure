@@ -1,26 +1,43 @@
 import sys
-n = int(input())
-stack = []
+sys.setrecursionlimit(10**6)
 
-for i in range(n):
-  order = sys.stdin.readline().strip()
-  if 'push' in order:
-    number = order.split()
-    stack.append(number[-1])
-  elif order == 'pop':
-    if len(stack) == 0:
-      print(-1)
-    else:
-      print(stack.pop())
-  elif order == 'size':
-    print(len(stack))
-  elif order == 'empty':
-    if len(stack) == 0:
-      print(1)
-    else:
-      print(0)
-  elif order == 'top':
-    if len(stack) == 0:
-      print(-1)
-    else:
-      print(stack[-1])
+class TreeNode:
+    def __init__(self):
+        self.left = None
+        self.data = None
+        self.right = None
+
+def post_order(node):
+    if node is None:
+        return
+    post_order(node.left)
+    post_order(node.right)
+    print(node.data)
+
+def insert(root, value):
+    node = TreeNode()
+    node.data = value
+
+    if root is None:
+        return node
+
+    current = root
+    while True:
+        if value < current.data:
+            if current.left is None:
+                current.left = node
+                break
+            current = current.left  # 이동
+        else:
+            if current.right is None:
+                current.right = node
+                break
+            current = current.right  # 이동
+    return root
+
+if __name__ == "__main__":
+    numbers = [50, 30, 24, 5, 28, 45, 98, 52, 60]
+    root = None
+    for number in numbers:
+        root = insert(root, number)
+    post_order(root)
